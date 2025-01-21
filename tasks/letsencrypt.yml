@@ -100,6 +100,13 @@
     - lesencrypt
     - nginxrevproxy
 
+- name: Disable certbot service and make sure it is masked
+  systemd_service:
+    name: certbot.timer
+    state: stopped
+    enabled: no
+    masked: yes
+
 - name: Insert cert-bot renew in crontab
   cron:
     name: "cert-bot renew"
